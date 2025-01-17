@@ -1,0 +1,57 @@
+@if(loading()){
+<div class="flex flex-colum">
+  <p-progressSpinner></p-progressSpinner>
+  <small class="font-bold">Loading...</small>
+</div>
+} @else{
+<div class="notification-content">
+  <div class="container">
+    <h2>Notifications</h2>
+    <p-button
+      label="New Message"
+      [raised]="true"
+      severity="success"
+      icon="pi pi-plus"
+      (click)="goToCreate()"
+    ></p-button>
+  </div>
+  <p-card class="notification-card">
+    <div class="notification-container">
+      <p-table
+        #notification
+        [value]="notificationList()"
+        class="notification-table"
+        [scrollable]="true"
+        scrollHeight="400px"
+      >
+        <ng-template pTemplate="header">
+          <tr>
+            @for(column of notificationColumn;track column.name){
+            <th>{{ column.name }}</th>
+            }
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-notification>
+          <tr class="notification-item">
+            <td class="notification-content">
+              <h4>{{ notification.name }}</h4>
+              <p>{{ notification.message }}</p>
+            </td>
+            <td>{{ notification.time }}</td>
+            <td>
+              <i
+                class="pi"
+                [ngClass]="{
+                  'pi-star-fill': notification.isStarred,
+                  'pi-star': !notification.isStarred
+                }"
+                [style.color]="notification.isStarred ? 'gold' : 'gray'"
+              ></i>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </p-card>
+</div>
+}

@@ -1,0 +1,14 @@
+.btn {
+  display: flex;
+  justify-content: start;
+
+  width: 200px;
+  margin-left: 20px;
+}
+
+.p-button-secondary {
+  margin-left: 5px;
+}
+.text {
+  color: red;
+}

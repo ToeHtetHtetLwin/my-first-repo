@@ -1,0 +1,35 @@
+<div class="container">
+  <p-card class="card">
+    <div class="context">
+      <form [formGroup]="logInForm">
+        <div class="text">
+          <label class="mr-2">Name:</label>
+          <input type="text" pInputText formControlName="name" class="txt" />
+          @if(logInForm.get('name')?.invalid && (logInForm.get('name')?.dirty ||
+          logInForm.get('name')?.touched)) {<small class="small">
+            Name is required. </small
+          >}
+        </div>
+        <div class="text">
+          <label class="mr-2">Password:</label>
+          <input type="password" pInputText formControlName="pwd" class="txt" />
+          @if(logInForm.get('pwd')?.invalid && (logInForm.get('pwd')?.dirty ||
+          logInForm.get('pwd')?.touched)) {<small class="small">
+            Password is required. </small
+          >}
+        </div>
+      </form>
+    </div>
+    <div class="btn">
+      <p-button
+        label="LogIn"
+        [raised]="true"
+        severity="success"
+        icon="pi pi-plus"
+        class="btn"
+        (click)="goToHeader()"
+        [disabled]="this.logInForm.invalid"
+      ></p-button>
+    </div>
+  </p-card>
+</div>
